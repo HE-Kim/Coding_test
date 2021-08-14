@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+bool ck(int n) {
+    if (n < 2) return false;
+    for (int i = 2; i*i <= n; i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+
+int solution(string numbers) {
+    int answer = 0;
+    vector<int> num;
+    vector<int> v;
+    for(int i=0; i<numbers.size(); i++)
+    {
+        num.push_back(numbers[i] - '0');
+        
+    }
+    sort(num.begin(), num.end());
+  
+    do {
+        for(int i=0; i<=num.size(); i++)
+        {
+            int temp=0;
+            for(int j=0; j<i; j++)
+            {
+                temp=(temp*10)+num[j];
+                v.push_back(temp);
+            }
+        }
+    
+    } while (next_permutation(num.begin(), num.end()));
+    
+    sort(v.begin(), v.end());
+    v.erase(unique(v.begin(), v.end()), v.end());
+    
+    for(int i=0; i<v.size(); i++)
+    {
+        if(ck(v[i])){
+            answer++;
+        }
+    }
+    //cout<<"ans "<<answer<<endl;
+    return answer;
+}
