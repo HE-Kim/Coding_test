@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(int brown, int yellow) {
+    vector<int> answer;
+    vector<int> v;
+    int size= brown+ yellow;
+    //int h=3;
+    int w;
+    for(int h=3; h<=size; h++)
+    {
+        if(size%h==0)
+        {
+            w=size/h;
+            if((w-2)*(h-2)==yellow)
+            {
+                answer.push_back(w);
+                answer.push_back(h);
+                break;
+            }
+        }
+      //  h++;
+        
+    }
+    //cout<<"res "<<answer[0]<<" "<<answer[1]<<" "<<v.size()/2<<endl;
+    return answer;
+}
