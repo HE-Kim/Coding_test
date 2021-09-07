@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int answer = 0;
+
+void DFS(vector<int> &numbers, int target, int cnt, int sum)
+{
+    //cout<<cnt<<endl;
+    if(numbers.size()==cnt)
+    {
+        if(sum==target)
+            answer++;
+        return;
+    }
+    
+   
+    DFS(numbers, target, cnt+1, sum+numbers[cnt]);
+    DFS(numbers, target, cnt+1, sum-numbers[cnt]);
+}
+
+
+int solution(vector<int> numbers, int target) {
+    
+    
+	DFS(numbers, target, 0, 0);//index, sum
+	//cout<<answer<<endl;
+    return answer;
+}
