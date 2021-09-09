@@ -1,0 +1,107 @@
+#include <string>
+#include <vector>
+#include <cctype>
+using namespace std;
+
+string step1(string new_id){
+    for(int i=0; i<new_id.size(); i++)
+    {
+        new_id[i]=tolower(new_id[i]);
+    }
+    
+    return new_id;
+}
+string step2(string new_id){
+    string res="";
+    
+    for(int i=0; i<new_id.size(); i++)
+    {
+        if(islower(new_id[i]) || new_id[i]=='-' || new_id[i]=='_' || new_id[i]=='.' || isdigit(new_id[i]) )
+            res+=new_id[i];
+    }
+    return res;
+}
+
+string step3 (string new_id){
+    string res="";
+    for(int i=0; i<new_id.size(); i++)
+    {
+        if(new_id[i]=='.' && new_id[i+1]=='.')
+            continue;
+        res+=new_id[i];    
+    }
+    return res;
+}
+string step4 (string new_id){
+    if(new_id[0]=='.')
+        new_id.erase(0,1);
+    if(new_id[new_id.size()-1]=='.')
+        new_id.erase(new_id.size()-1,new_id.size());    
+    return new_id;
+}
+
+string step5 (string new_id){
+    if(new_id=="")
+        new_id+='a';
+    return new_id;
+}
+string step6 (string new_id){
+    string res="";
+    
+        if(new_id.size()>15)
+        {
+            for(int i=0; i<15; i++)
+            {
+                res+=new_id[i];
+            }
+            for(int i=0; i<res.size(); i++)
+            {
+                res=step4(res);
+            }
+        
+        }
+        else
+        {
+            res=new_id;
+        }
+        return res;
+    
+}
+string step7 (string new_id){
+    
+    if(new_id.size()<3)
+    {
+        for(int i=0; i<4-new_id.size(); i++)
+            new_id+=new_id[new_id.size()-1];
+    }
+    
+    return new_id;
+}
+
+string solution(string new_id) {
+    string answer = "";
+    
+   // cout<<"step0 "<<new_id<<endl;
+    
+    new_id=step1(new_id);
+   // cout<<"step1 "<<new_id<<endl;
+    
+    new_id=step2(new_id);
+   // cout<<"step2 "<<new_id<<endl;
+    
+    new_id=step3(new_id);
+   // cout<<"step3 "<<new_id<<endl;
+    
+    new_id=step4(new_id);
+   // cout<<"step4 "<<new_id<<endl;
+    
+    new_id=step5(new_id);
+    //cout<<"step5 "<<new_id<<endl;
+    
+    new_id=step6(new_id);
+    //cout<<"step6 "<<new_id<<endl;
+    
+    new_id=step7(new_id);
+    //cout<<"step6 "<<new_id<<endl;
+    return new_id;
+}
