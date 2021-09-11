@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cctype>
+#include <map>
+using namespace std;
+ 
+map<string, string> Convert;
+ 
+void Make_Convert_Map()
+{
+    Convert["zero"] = "0";
+    Convert["one"] = "1";
+    Convert["two"] = "2";
+    Convert["three"] = "3";
+    Convert["four"] = "4";
+    Convert["five"] = "5";
+    Convert["six"] = "6";
+    Convert["seven"] = "7";
+    Convert["eight"] = "8";
+    Convert["nine"] = "9";
+}
+
+
+int solution(string s) {
+    Make_Convert_Map();
+    string str="", res="";
+    for(int i=0; i<s.size(); i++)
+    {
+        if(!isdigit(s[i]))
+        {
+            str+=s[i];
+            if(Convert[str]!="")
+            {
+                res+=Convert[str];
+                str="";
+            }
+        }
+        else
+            res+=s[i];
+    }
+    //cout<<stoi(res);
+    return stoi(res);
+}
