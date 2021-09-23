@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+
+
+using namespace std;
+
+vector<int> solution(int N, vector<int> stages) {
+    vector<int> answer;
+    
+    int size=stages.size();
+    int cnt_lv=0;
+    //int MAX=*max_element(stages.begin(), stages.end());
+    vector<double> res(N, 0);
+    sort(stages.begin(), stages.end());
+    
+    for(int i=1; i<=N; i++)
+    {
+        int cnt=0;
+        for(int j=0; j<stages.size(); j++)
+        {
+            if(stages[j]==i)
+            {
+                cnt++;
+            }
+        }
+        if(cnt!=0)
+            res[i-1]=(double)cnt/size;
+        
+        size-=cnt;
+        
+    }
+   
+    
+    for(int i=0; i<N; i++)
+    {
+        int idx=max_element(res.begin(), res.end()) - res.begin();
+        answer.push_back(idx+1);
+        res[idx]=-1;
+    }
+    
+    
+    return answer;
+}
