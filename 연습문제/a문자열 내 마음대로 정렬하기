@@ -1,0 +1,25 @@
+#include <string>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int N;
+
+bool SORT(string x, string y)
+{
+    if(x[N]==y[N])
+    {
+        return x<y;
+    }
+    else
+    {
+        return x[N]<y[N];
+    }
+}
+vector<string> solution(vector<string> strings, int n) {
+    vector<string> answer;
+    N=n;
+    sort(strings.begin(), strings.end(), SORT);
+    return strings;
+}
