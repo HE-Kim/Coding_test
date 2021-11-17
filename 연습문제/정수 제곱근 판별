@@ -1,0 +1,19 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <cctype>
+using namespace std;
+
+long long solution(long long n) {
+    long long answer = 0;
+    //cout<<isdigit(11);
+    if(sqrt(n)-(int)sqrt(n)==0)
+    {
+        long long k=sqrt(n)+1;
+        return k*k;
+    }
+    else
+        return -1;
+    return answer;
+}
